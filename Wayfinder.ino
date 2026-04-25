@@ -6,7 +6,6 @@ BLEByteCharacteristic navCharacteristic("19B10001-E8F2-537E-4F6C-D104768A1214", 
 
 void setup() {
   Serial.begin(BAUD_RATE);
-  while (!Serial); // Optional: wait for serial port to connect
 
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
@@ -29,7 +28,7 @@ void loop() {
     Serial.print("Connected to central: ");
     Serial.println(central.address());
     while (central.connected()) {
-      // Loop here
+      delay(10); // Yield to background tasks
     }
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());
