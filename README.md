@@ -37,6 +37,7 @@ The device acts as a BLE Peripheral. Navigation commands are sent as byte values
 ### Prerequisites
 - [arduino-cli](https://arduino.github.io/arduino-cli/latest/)
 - Seeeduino nRF52 mbedOS Core
+- `adafruit-nrfutil` available in `PATH` (required by Seeeduino mbed toolchain)
 - Libraries: `Adafruit DRV2605 Library`, `ArduinoBLE`
 
 ### Compilation
@@ -45,6 +46,11 @@ arduino-cli compile --fqbn Seeeduino:mbed:xiaonRF52840Sense Wayfinder.ino
 ```
 
 ## 📜 Project Constraints
-- **Low Power:** No `delay()`. Uses non-blocking `millis()` and `delay(10)` yields for mbedOS.
+- **Low Power:** No blocking `delay()`. Use `millis()` scheduling for BLE polling and enter idle sleep while disconnected.
 - **Minimalist:** No screens, no buttons, no visible LEDs.
 - **Priority Logic:** Alerts and Vectors are never triggered simultaneously to avoid cognitive clutter.
+
+## 🔍 Runtime Notes
+- Polls BLE on `millis()` intervals (`5ms` connected, `50ms` disconnected).
+- Uses light sleep in disconnected state (`__WFI` on mbed targets).
+- Unknown BLE commands are counted and logged only when `WAYFINDER_DEBUG_SERIAL=1`.

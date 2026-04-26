@@ -13,7 +13,7 @@ The project consists of two interchangeable physical carriers utilizing a single
 
 **The Universal Core (The Brain):**
 A tiny, waterproof, magnetic module containing the battery, MCU, and haptic driver.
-* **Microcontroller:** Seeed Studio XIAO nRF52840 Sense (FQBN: `Seeeduino:nrf52:xiaoble`).
+* **Microcontroller:** Seeed Studio XIAO nRF52840 Sense (FQBN: `Seeeduino:mbed:xiaonRF52840Sense`).
 * **Haptic Driver:** TI DRV2605L (I2C communication).
 * **Actuators:** 3V ERM Coin Vibration Motors (to be upgraded to LRAs for production).
 * **Power:** 3.7V 100mAh LiPo battery (soldered directly to XIAO `BAT+`/`BAT-` pads for native charge management).
@@ -35,18 +35,19 @@ We are currently building the single-motor Armband prototype on a breadboard.
 ## 4. Software Stack & Tooling
 * **Compiler:** `arduino-cli`
 * **Core:** Seeeduino nRF52 mbedOS
+* **Host Tooling:** `adafruit-nrfutil` in `PATH`.
 * **Libraries Required:** Adafruit DRV2605 Library, standard ArduinoBLE library.
 * **UX/Haptic Logic:** * The device acts as a BLE Peripheral. The user's smartphone acts as the BLE Central device (running the navigation app).
     * We do NOT process GPS data on the wearable. The phone handles all location math and simply sends byte commands over a BLE characteristic (e.g., `0x01` = Turn Left, `0x02` = Turn Right, `0x03` = Arrived).
     * The wearable maps those bytes to specific DRV2605L waveform sequences.
 
 ## 5. Strict Project Constraints (DO NOT VIOLATE)
-1. **Power Consumption:** The device must last a week on standby. Do not use blocking `delay()` functions; use `millis()` for non-blocking timing. Put the nRF52840 into deep sleep when disconnected.
+1. **Power Consumption:** The device must last a week on standby. Do not use blocking `delay()` functions; use `millis()` for non-blocking timing and enter idle sleep when disconnected.
 2. **Form Factor:** Do not add screens, buttons, or bulky components. The device must remain invisible and seamless.
 3. **No Redundant Haptics:** If generating code for a multi-device setup, the Armband handles *Alerts* (approaching turns, missed routes) and the Insole handles *Vectors* (left/right direction). Never vibrate both simultaneously for the same instruction.
 
 ## 6. Immediate Next Steps (Task for AI)
-1. Initialize the `arduino-cli` project for `Seeeduino:nrf52:xiaoble`.
+1. Initialize the `arduino-cli` project for `Seeeduino:mbed:xiaonRF52840Sense`.
 2. Write the baseline `main.cpp` or `.ino` file to establish the BLE Service and Characteristic.
 3. Implement the I2C initialization for the DRV2605L.
 4. Write a non-blocking switch-case loop that reads incoming BLE bytes and triggers distinct haptic waveforms from the DRV2605L library (e.g., a double-click for 'Left', a triple-click for 'Right').

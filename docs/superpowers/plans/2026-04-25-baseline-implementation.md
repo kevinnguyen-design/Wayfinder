@@ -1,6 +1,6 @@
 # WAYFINDER Baseline Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Initialize the Wayfinder Arduino project, establish BLE connectivity, and implement the haptic driver logic.
 
@@ -15,7 +15,7 @@
 **Files:**
 - Create: `Wayfinder.ino`
 
-- [ ] **Step 1: Create the base .ino file with minimal setup/loop**
+- [x] **Step 1: Create the base .ino file with minimal setup/loop**
 
 ```cpp
 void setup() {
@@ -26,12 +26,12 @@ void loop() {
 }
 ```
 
-- [ ] **Step 2: Verify project structure**
+- [x] **Step 2: Verify project structure**
 
 Run: `ls -R`
 Expected: `Wayfinder.ino` exists.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add Wayfinder.ino
@@ -45,7 +45,7 @@ git commit -m "chore: init wayfinder project"
 **Files:**
 - Modify: `Wayfinder.ino`
 
-- [ ] **Step 1: Define BLE Service and Characteristic**
+- [x] **Step 1: Define BLE Service and Characteristic**
 
 ```cpp
 #include <ArduinoBLE.h>
@@ -82,12 +82,12 @@ void loop() {
 }
 ```
 
-- [ ] **Step 2: Compile to verify syntax**
+- [x] **Step 2: Compile to verify syntax**
 
-Run: `arduino-cli compile --fqbn Seeeduino:nrf52:xiaoble Wayfinder.ino`
+Run: `arduino-cli compile --fqbn Seeeduino:mbed:xiaonRF52840Sense Wayfinder.ino`
 Expected: Success
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add Wayfinder.ino
@@ -101,7 +101,7 @@ git commit -m "feat: add BLE service and characteristic"
 **Files:**
 - Modify: `Wayfinder.ino`
 
-- [ ] **Step 1: Include Adafruit_DRV2605 and initialize in setup**
+- [x] **Step 1: Include Adafruit_DRV2605 and initialize in setup**
 
 ```cpp
 #include <Wire.h>
@@ -120,12 +120,12 @@ void setup() {
 }
 ```
 
-- [ ] **Step 2: Compile to verify library inclusion**
+- [x] **Step 2: Compile to verify library inclusion**
 
-Run: `arduino-cli compile --fqbn Seeeduino:nrf52:xiaoble Wayfinder.ino`
+Run: `arduino-cli compile --fqbn Seeeduino:mbed:xiaonRF52840Sense Wayfinder.ino`
 Expected: Success
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add Wayfinder.ino
@@ -139,7 +139,7 @@ git commit -m "feat: init DRV2605L haptic driver"
 **Files:**
 - Modify: `Wayfinder.ino`
 
-- [ ] **Step 1: Implement non-blocking command processing**
+- [x] **Step 1: Implement non-blocking command processing**
 
 ```cpp
 void processCommand(uint8_t cmd) {
@@ -180,12 +180,12 @@ void loop() {
 }
 ```
 
-- [ ] **Step 2: Final Compilation**
+- [x] **Step 2: Final Compilation**
 
-Run: `arduino-cli compile --fqbn Seeeduino:nrf52:xiaoble Wayfinder.ino`
+Run: `arduino-cli compile --fqbn Seeeduino:mbed:xiaonRF52840Sense Wayfinder.ino`
 Expected: Success
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add Wayfinder.ino

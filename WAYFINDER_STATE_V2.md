@@ -3,7 +3,7 @@
 
 ## 1. Current Project State (Hardware Verified)
 * **The Device:** WAYFINDER Armband Prototype V1 (Single Motor).
-* **The Brain:** Seeed Studio XIAO nRF52840 Sense (`Seeeduino:nrf52:xiaoble`).
+* **The Brain:** Seeed Studio XIAO nRF52840 Sense (`Seeeduino:mbed:xiaonRF52840Sense`).
 * **The Driver:** TI DRV2605L via I2C (Pins `D4` SDA, `D5` SCL).
 * **The Actuator:** 3V ERM Coin Motor.
 * **Power:** Currently running via USB-C logic (3.3V). LiPo battery is NOT soldered yet.
@@ -12,11 +12,12 @@
 ## 2. Software & Tooling Configuration
 * **Compiler:** `arduino-cli`
 * **Core:** Seeeduino nRF52 mbedOS
+* **Host Tooling:** `adafruit-nrfutil` in `PATH` for mbed packaging/upload steps.
 * **Installed Libraries:** `Adafruit DRV2605 Library`
 * **Required (Next Phase):** `ArduinoBLE` library.
 
 ## 3. Strict Development Rules for Phase 2
-1. **Zero Blocking Code:** The loop cannot contain `delay()`. You must use `millis()` for all timing. If the BLE radio blocks, the device drops connection.
+1. **Zero Blocking Code:** Do not use blocking `delay()`. Use `millis()` scheduling for timing and permit idle sleep while disconnected.
 2. **ERM Constraints:** The DRV2605L is currently configured for ERM motors (`drv.selectLibrary(1)`). Do not call LRA-specific waveforms or auto-calibration routines yet.
 3. **Power Management Prep:** While running on USB now, code must be written with the assumption it will run on a 100mAh LiPo. Keep serial printing minimal and prepare for sleep states.
 
