@@ -88,7 +88,4 @@ void loop() {
       processCommand(navCharacteristic.value());
     }
   }
-  
-  // Add a small delay to avoid excessive CPU usage
-  delay(1);
 }
