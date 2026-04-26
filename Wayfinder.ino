@@ -37,24 +37,23 @@ void setup() {
 
 void processCommand(uint8_t cmd) {
   switch (cmd) {
-    case 0x01: // Left
-      drv.setWaveform(0, 11); // Sharp Click - 100%
-      drv.setWaveform(1, 0);  // end waveform
-      drv.go();
-      Serial.println("Haptic: Left");
-      break;
-    case 0x02: // Right
-      drv.setWaveform(0, 11);
-      drv.setWaveform(1, 11);
-      drv.setWaveform(2, 0);
-      drv.go();
-      Serial.println("Haptic: Right");
-      break;
-    case 0x03: // Arrived
-      drv.setWaveform(0, 15); // Long buzz
+    case 0x01: // Left -> Double Click (ID 10)
+      drv.setWaveform(0, 10);
       drv.setWaveform(1, 0);
       drv.go();
-      Serial.println("Haptic: Arrived");
+      Serial.println("Haptic: Left (Double Click)");
+      break;
+    case 0x02: // Right -> Triple Click (ID 12)
+      drv.setWaveform(0, 12);
+      drv.setWaveform(1, 0);
+      drv.go();
+      Serial.println("Haptic: Right (Triple Click)");
+      break;
+    case 0x03: // Arrived -> Buzz 100% (ID 47)
+      drv.setWaveform(0, 47);
+      drv.setWaveform(1, 0);
+      drv.go();
+      Serial.println("Haptic: Arrived (Buzz)");
       break;
     default:
       break;
@@ -64,15 +63,11 @@ void processCommand(uint8_t cmd) {
 void loop() {
   BLEDevice central = BLE.central();
   if (central) {
-    Serial.print("Connected to central: ");
-    Serial.println(central.address());
     while (central.connected()) {
       if (navCharacteristic.written()) {
         processCommand(navCharacteristic.value());
       }
       delay(10); // Yield to background tasks
     }
-    Serial.print("Disconnected from central: ");
-    Serial.println(central.address());
   }
 }
