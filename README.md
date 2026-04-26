@@ -25,9 +25,9 @@ The device acts as a BLE Peripheral. Navigation commands are sent as byte values
 
 | Value | Command | Haptic Response |
 | :--- | :--- | :--- |
-| `0x01` | Turn Left | Sharp Click (ID 11) |
-| `0x02` | Turn Right | Double Sharp Click |
-| `0x03` | Arrived | Long Buzz (ID 15) |
+| `0x01` | Turn Left | Double Click (ID 10) |
+| `0x02` | Turn Right | Triple Click (ID 12) |
+| `0x03` | Arrived | Buzz 100% (ID 47) |
 
 **Service UUID:** `19B10000-E8F2-537E-4F6C-D104768A1214`  
 **Characteristic UUID:** `19B10001-E8F2-537E-4F6C-D104768A1214`
