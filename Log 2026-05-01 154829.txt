@@ -1,0 +1,42 @@
+nRF Connect, 2026-05-01
+WAYFINDER-CORE (50:45:EF:62:86:73)
+V	15:47:27.611	Connecting to 50:45:EF:62:86:73...
+D	15:47:27.611	gatt = device.connectGatt(autoConnect = false, TRANSPORT_LE, preferred PHY = LE 1M)
+D	15:47:28.151	[Broadcast] Action received: android.bluetooth.device.action.ACL_CONNECTED
+D	15:47:28.167	[Callback] Connection state changed with status: 0 and new state: CONNECTED (2)
+I	15:47:28.167	Connected to 50:45:EF:62:86:73
+V	15:47:28.173	Discovering services...
+D	15:47:28.173	gatt.discoverServices()
+I	15:47:28.481	Connection parameters updated (interval: 7.5ms, latency: 0, timeout: 5000ms)
+D	15:47:28.658	[Callback] Services discovered with status: 0
+I	15:47:28.658	Services discovered
+V	15:47:28.661	Generic Access (0x1800)
+- Device Name [R] (0x2A00)
+- Appearance [R] (0x2A01)
+Generic Attribute (0x1801)
+- Service Changed [I] (0x2A05)
+   Client Characteristic Configuration (0x2902)
+Unknown Service (19b10000-e8f2-537e-4f6c-d104768a1214)
+- Unknown Characteristic [R W] (19b10001-e8f2-537e-4f6c-d104768a1214)
+D	15:47:28.661	gatt.setCharacteristicNotification(00002a05-0000-1000-8000-00805f9b34fb, true)
+I	15:47:28.784	Connection parameters updated (interval: 30.0ms, latency: 0, timeout: 5000ms)
+V	15:47:38.960	Writing request to characteristic 19b10001-e8f2-537e-4f6c-d104768a1214
+D	15:47:38.960	gatt.writeCharacteristic(19b10001-e8f2-537e-4f6c-d104768a1214, value=0x01)
+I	15:47:39.036	Data written to 19b10001-e8f2-537e-4f6c-d104768a1214, value: (0x) 01
+A	15:47:39.036	"(0x) 01" sent
+V	15:47:42.732	Writing request to characteristic 19b10001-e8f2-537e-4f6c-d104768a1214
+D	15:47:42.732	gatt.writeCharacteristic(19b10001-e8f2-537e-4f6c-d104768a1214, value=0x02)
+I	15:47:42.785	Data written to 19b10001-e8f2-537e-4f6c-d104768a1214, value: (0x) 02
+A	15:47:42.785	"(0x) 02" sent
+V	15:47:46.368	Writing request to characteristic 19b10001-e8f2-537e-4f6c-d104768a1214
+D	15:47:46.368	gatt.writeCharacteristic(19b10001-e8f2-537e-4f6c-d104768a1214, value=0x03)
+I	15:47:46.415	Data written to 19b10001-e8f2-537e-4f6c-d104768a1214, value: (0x) 03
+A	15:47:46.415	"(0x) 03" sent
+V	15:48:02.844	Writing request to characteristic 19b10001-e8f2-537e-4f6c-d104768a1214
+D	15:48:02.844	gatt.writeCharacteristic(19b10001-e8f2-537e-4f6c-d104768a1214, value=0x03)
+I	15:48:02.916	Data written to 19b10001-e8f2-537e-4f6c-d104768a1214, value: (0x) 03
+A	15:48:02.916	"(0x) 03" sent
+V	15:48:06.428	Writing request to characteristic 19b10001-e8f2-537e-4f6c-d104768a1214
+D	15:48:06.428	gatt.writeCharacteristic(19b10001-e8f2-537e-4f6c-d104768a1214, value=0x01)
+I	15:48:06.553	Data written to 19b10001-e8f2-537e-4f6c-d104768a1214, value: (0x) 01
+A	15:48:06.553	"(0x) 01" sent
