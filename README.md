@@ -36,12 +36,19 @@ Navigation commands are sent as byte values to the Navigation Characteristic.
 
 **Service UUID:** `19B10010-E8F2-537E-4F6C-D104768A1214`
 **Characteristic UUID:** `19B10011-E8F2-537E-4F6C-D104768A1214`
+**Motion Telemetry UUID:** `19B10012-E8F2-537E-4F6C-D104768A1214`
 
 Role behavior:
 - Left device executes `LEFT` and `STOP`; ignores `RIGHT`.
 - Right device executes `RIGHT` and `STOP`; ignores `LEFT`.
 
 Shared contract doc: `docs/ble_command_contract_v1.md`
+
+## 🗺 Navigation Cue Engine
+
+The phone app remains the navigation authority. Google Navigation SDK or Mapbox Navigation SDK route progress should be adapted into `GuidanceUpdate`, then `WayfinderCueEngine` emits one haptic cue per route maneuver when the user enters the turn window.
+
+The XIAO Sense IMU is used as motion confidence telemetry only. It can help suppress cues while the user is stopped near an intersection, but it does not determine route direction or absolute heading.
 
 ## 🚀 Getting Started
 
@@ -69,4 +76,5 @@ Bring-up workflow: `docs/dual_device_bringup.md`
 
 ## 🔍 Runtime Notes
 - Firmware uses ArduinoBLE event handlers for command writes and calls `BLE.poll()` continuously in `loop()`.
+- XIAO Sense IMU telemetry reports idle/moving confidence to the phone; it does not decide route direction.
 - Unknown BLE commands are counted and logged only when `WAYFINDER_DEBUG_SERIAL=1`.

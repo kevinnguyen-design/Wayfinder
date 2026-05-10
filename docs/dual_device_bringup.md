@@ -21,7 +21,8 @@ The firmware will not compile unless exactly one role macro is set to `1`.
 - Confirm the other advertises as `WAYFINDER-RIGHT`.
 - Confirm both expose:
   - Service UUID `19B10010-E8F2-537E-4F6C-D104768A1214`
-  - Characteristic UUID `19B10011-E8F2-537E-4F6C-D104768A1214`
+  - Command characteristic UUID `19B10011-E8F2-537E-4F6C-D104768A1214`
+  - Motion telemetry characteristic UUID `19B10012-E8F2-537E-4F6C-D104768A1214`
 
 ## 4. Verify role behavior (bench)
 - Send `0x01` (`LEFT`) to both devices:
@@ -38,3 +39,9 @@ The firmware will not compile unless exactly one role macro is set to `1`.
 - Power-cycle one device.
 - Confirm controller reconnects and resumes writes to recovered side.
 - Confirm controller continues issuing cues to still-connected side while reconnecting.
+
+## 6. Verify motion telemetry
+- Subscribe to motion telemetry on each device.
+- Leave device still for at least 3 seconds and confirm motion state reports `1` (`IDLE`).
+- Move the device by hand and confirm motion state reports `2` (`MOVING`).
+- If flags bit `1` is set, the IMU was not detected; continue haptic testing but do not use motion confidence.
